@@ -13,6 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Print Azure Credentials (for Debugging)
+      run: echo "${{ secrets.AZURE_CREDENTIALS }}"  # This will print the secret content
+
     - name: Set up Azure Credentials
       uses: azure/login@v1
       with:
