@@ -150,7 +150,7 @@ resource "azurerm_sql_server" "sql_server" {
   resource_group_name          = azurerm_resource_group.rg.name  # Doit être défini auparavant (déclaration du groupe de ressources)
   location                     = var.location
   administrator_login          = "sqladmin"  # Utilisateur administrateur
-  administrator_login_password = "your_secure_password_here"  # Mot de passe administrateur (utiliser un mot de passe sécurisé)
+  administrator_login_password = "Polytechnique2025"  # Mot de passe administrateur (utiliser un mot de passe sécurisé)
   version = "12.0"
 
   tags = {
@@ -236,4 +236,17 @@ resource "azurerm_key_vault" "kv_calicot_dev" {
   soft_delete_retention_days  = 7
   tenant_id       = var.tenant_id
   enable_rbac_authorization = true
+}
+resource "azurerm_key_vault_access_policy" "calicot_ap" {
+  key_vault_id = azurerm_key_vault.kv_calicot_dev.id
+  tenant_id    = var.tenant_id
+  object_id    = var.client_id
+
+  key_permissions = [
+    "Get", "List"
+  ]
+
+  secret_permissions = [
+    "Get", "List"
+  ]
 }
