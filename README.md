@@ -4,6 +4,12 @@
 **Équipes** : 2 personnes  
 **Date** : 15 mars 2025
 
+Team DuoPoly (Polytechnique 2)
+-Francois Tourigny et Mehdi Benouhoud
+
+
+Bonjour! Nous avons eu des problemes avec les credentials des actions pour se connecter, mais les actions sont faites!!
+
 ## Mise en situation
 
 Après s'être être acheté une imprimante 3D pour suivre la tendance, M. Ken Oï a décidé de recréer la nostalgie de son enfance en imprimant des masques de Bionicle qu'il collectionnait en 2001. Il a rapidement réalisé qu'il n'était pas le seul à avoir ce désir, car plusieurs de ses amis lui ont demandé d'en faire pour eux aussi. Voyant que la demande était présente, il a décidé de créer une entreprise, **Calicot**, et a mis en place un site web marchand pour répondre à toute la demande.
