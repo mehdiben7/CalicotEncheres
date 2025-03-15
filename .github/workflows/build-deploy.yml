@@ -16,14 +16,10 @@ jobs:
     - name: Print Azure Credentials (for Debugging)
       run: echo "${{ secrets.AZURE_CREDENTIALS }}"  # This will print the secret content
 
-    # Authenticate using the Service Principal credentials from GitHub secrets
-    - name: Authenticate to Azure
+    - name: Set up Azure Credentials
       uses: azure/login@v1
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Set up Node.js (ou autre technologie selon votre app)
       uses: actions/setup-node@v2
