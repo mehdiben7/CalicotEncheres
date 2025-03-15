@@ -37,7 +37,6 @@ resource "azurerm_subnet" "snet_db" {
   address_prefixes     = var.snet_db_address_prefix
 }
 
-# Groupe de sécurité réseau pour le sous-réseau web (HTTP & HTTPS autorisés)
 resource "azurerm_network_security_group" "nsg_web" {
   name                = "nsg-dev-web-cc-${var.code_identification}"
   location            = var.location
@@ -77,7 +76,6 @@ resource "azurerm_subnet_network_security_group_association" "snet_web_nsg" {
   network_security_group_id = azurerm_network_security_group.nsg_web.id
 }
 
-# Groupe de sécurité réseau pour le sous-réseau DB (aucun accès externe)
 resource "azurerm_network_security_group" "nsg_db" {
   name                = "nsg-dev-db-cc-${var.code_identification}"
   location            = var.location
@@ -228,4 +226,14 @@ resource "azurerm_monitor_autoscale_setting" "app_autoscale" {
       }
     }
   }
+}
+
+resource "azurerm_key_vault" "kv_calicot_dev" {
+  name                        = "kv-calicot-dev-${var.code_identification}"
+  location                    = "Canada Central"
+  resource_group_name         = var.resource_group_name
+  sku_name                    = "standard"
+  soft_delete_retention_days  = 7
+  tenant_id       = var.tenant_id
+  enable_rbac_authorization = true
 }
