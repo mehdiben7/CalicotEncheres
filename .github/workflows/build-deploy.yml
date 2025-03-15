@@ -1,0 +1,37 @@
+name: Build and Deploy Application
+
+on:
+  push:
+    branches:
+      - main  # Déclenche lors de chaque push vers la branche `main`
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Azure Credentials
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set up Node.js (ou autre technologie selon votre app)
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Exemple pour une app Node.js, adaptez à votre technologie
+
+    - name: Install dependencies
+      run: npm install  # Exemple pour Node.js
+
+    - name: Build Application
+      run: npm run build  # Construire l'application
+
+    - name: Deploy to Azure
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: app-calicot-dev-${{ secrets.CODE_IDENTIFICATION }}  # Nom de l'App Service
+        slot-name: production  # Le slot de déploiement, ici 'production'
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}  # Profil de publication stocké en secret
