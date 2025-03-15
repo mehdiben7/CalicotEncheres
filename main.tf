@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"  # Use a version that supports azurerm_sql_server and azurerm_sql_database
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
 
@@ -134,6 +143,32 @@ resource "azurerm_app_service" "app" {
 
   app_settings = {
     "ImageUrl" = "https://stcalicotprod000.blob.core.windows.net/images/"
+  }
+}
+
+# 1. Créer un serveur SQL Azure
+resource "azurerm_sql_server" "sql_server" {
+  name                         = "sqlsrv-calicot-dev-${var.code_identification}"  # Nom du serveur SQL
+  resource_group_name          = azurerm_resource_group.rg.name  # Doit être défini auparavant (déclaration du groupe de ressources)
+  location                     = var.location
+  administrator_login          = "sqladmin"  # Utilisateur administrateur
+  administrator_login_password = "your_secure_password_here"  # Mot de passe administrateur (utiliser un mot de passe sécurisé)
+  version = "12.0"
+
+  tags = {
+    environment = "development"
+  }
+}
+
+# 2. Créer la base de données SQL Azure
+resource "azurerm_sql_database" "sql_db" {
+  name                = "sqldb-calicot-dev-${var.code_identification}"  # Nom de la base de données
+  resource_group_name = azurerm_resource_group.rg.name  # Doit être défini auparavant
+  location            = var.location
+  server_name         = azurerm_sql_server.sql_server.name  # Référence au serveur SQL créé précédemment
+
+  tags = {
+    environment = "development"
   }
 }
 
