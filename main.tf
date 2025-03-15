@@ -211,7 +211,7 @@ resource "azurerm_monitor_autoscale_setting" "app_autoscale" {
         metric_name        = "CpuPercentage"
         metric_resource_id = azurerm_app_service_plan.app_plan.id
         operator           = "LessThan"
-        threshold          = 50
+        threshold          = 70
         time_grain         = "PT1M"
         time_window        = "PT5M"
         statistic          = "Average"
