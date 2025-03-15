@@ -132,3 +132,6 @@ Votre projet sera évalué selon les critères suivants :
 ## Conclusion
 
 Ce défi vous permet de mettre en pratique les principes clés de l'automatisation, la sécurité et la scalabilité sur Azure. Il vous prépare à des scénarios réels en entreprise.
+
+
+test
