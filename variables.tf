@@ -31,7 +31,7 @@ variable "location" {
 }
 
 variable "code_identification" {
-  description = "Code unique pour identifier les ressources"
+  description = "8"
   type        = string
 }
 
